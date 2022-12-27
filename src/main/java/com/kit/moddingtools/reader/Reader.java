@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileReader {
+public class Reader {
   /**
    * Scan a file and return the lines.
    * 
@@ -13,7 +13,7 @@ public class FileReader {
    * @return
    *         The lines of the file.
    */
-  public static String[] getLines(String path) {
+  public static String[] read(String path) {
     List<String> lines = new ArrayList<String>();
 
     try {
@@ -38,7 +38,7 @@ public class FileReader {
    * @return
    *         The paths of all files in the directory.
    */
-  public static List<String> getFiles(String path) {
+  public static List<String> listFiles(String path) {
     List<String> files = new ArrayList<String>();
 
     java.io.File folder = new java.io.File(path);
@@ -61,7 +61,7 @@ public class FileReader {
    * @return
    *         The paths of all directories in the directory.
    */
-  public static List<String> getAllSubDirectories(String path, String... exclude) {
+  public static List<String> listSubdirectories(String path, String... exclude) {
     List<String> directories = new ArrayList<String>();
 
     java.io.File folder = new java.io.File(path);
@@ -71,9 +71,9 @@ public class FileReader {
       if (listOfFiles[i].isDirectory()) {
         directories.add(listOfFiles[i].getPath());
 
-        List<String> subDirectories = getAllSubDirectories(listOfFiles[i].getPath());
+        List<String> subDirectories = listSubdirectories(listOfFiles[i].getPath());
         if (subDirectories.size() > 0) {
-          directories.addAll(getAllSubDirectories(listOfFiles[i].getPath()));
+          directories.addAll(listSubdirectories(listOfFiles[i].getPath()));
         }
       }
     }
